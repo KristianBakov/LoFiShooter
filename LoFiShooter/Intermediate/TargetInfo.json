@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "LoFiShooter",
+			"Path": "..\\Source\\LoFiShooter.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "LoFiShooterEditor",
+			"Path": "..\\Source\\LoFiShooterEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

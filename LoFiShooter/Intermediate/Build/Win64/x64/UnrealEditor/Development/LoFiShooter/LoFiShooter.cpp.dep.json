@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\kristian\\desktop\\projects\\lofishooter\\lofishooter\\source\\lofishooter\\lofishooter.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\kristian\\desktop\\projects\\lofishooter\\lofishooter\\intermediate\\build\\win64\\x64\\lofishootereditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\kristian\\desktop\\projects\\lofishooter\\lofishooter\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\lofishooter\\definitions.lofishooter.h",
+            "c:\\users\\kristian\\desktop\\projects\\lofishooter\\lofishooter\\source\\lofishooter\\lofishooter.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
