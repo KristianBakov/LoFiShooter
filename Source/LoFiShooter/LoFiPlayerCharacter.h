@@ -39,6 +39,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
 	APlayerController* LoFiPlayerController;
@@ -49,9 +50,15 @@ private:
 	void Shoot(const FInputActionValue& Value);
 
 public:
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float RotationRate = 10.0f;
+	UPROPERTY(EditDefaultsOnly)
+	float MaxHealth = 100;
+	UPROPERTY(VisibleAnywhere)
+	float Health;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Gun")
 	TSubclassOf<AGun> GunClass;

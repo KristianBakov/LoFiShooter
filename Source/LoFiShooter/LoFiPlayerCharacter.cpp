@@ -22,6 +22,8 @@ void ALoFiPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Health = MaxHealth;
+
 	LoFiPlayerController = Cast<APlayerController>(Controller);
 	//Setup input mapping context
 	if (LoFiPlayerController)
@@ -59,6 +61,15 @@ void ALoFiPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputShoot, ETriggerEvent::Triggered, this, &ALoFiPlayerCharacter::Shoot);
 }
 
+float ALoFiPlayerCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	DamageToApply = FMath::Min(Health, DamageToApply);
+	Health -= DamageToApply;
+	UE_LOG(LogTemp, Warning, TEXT("Health left: %f"), Health);
+	return DamageToApply;
+}
+
 void ALoFiPlayerCharacter::Move(const FInputActionValue& Value)
 {
 	FVector2D InputVector = Value.Get<FVector2D>();
@@ -79,5 +90,10 @@ void ALoFiPlayerCharacter::Jump(const FInputActionValue& Value)
 void ALoFiPlayerCharacter::Shoot(const FInputActionValue& Value)
 {
 	if(Value.Get<bool>()) Gun->PullTrigger();
+}
+
+bool ALoFiPlayerCharacter::IsDead() const
+{
+	return Health <= 0;
 }
 
