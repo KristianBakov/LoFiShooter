@@ -20,8 +20,25 @@ AGun::AGun()
 
 void AGun::PullTrigger()
 {
-	UE_LOG(LogTemp, Warning, TEXT("You have been shot!"));
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+
+	APawn* OwnerPawn = Cast<APawn>(GetOwner());
+	if(!OwnerPawn) return;
+	AController* OwnerController = OwnerPawn->GetController();
+	if(!OwnerController) return;
+
+	FVector BulletStartPoint;
+	FRotator BulletStartRotation;
+	OwnerController->GetPlayerViewPoint(BulletStartPoint, BulletStartRotation);
+
+	FVector BulletEnd = BulletStartPoint + BulletStartRotation.Vector() * MaxRange;
+	//TODO: ADD line trace
+	FHitResult HitResult;
+	bool bShotSuccess = GetWorld()->LineTraceSingleByChannel(HitResult, BulletStartPoint, BulletEnd, ECollisionChannel::ECC_GameTraceChannel1);
+	if (bShotSuccess)
+	{
+		DrawDebugPoint(GetWorld(), HitResult.ImpactPoint, 20, FColor::Red, true);
+	}
 }
 
 // Called when the game starts or when spawned
