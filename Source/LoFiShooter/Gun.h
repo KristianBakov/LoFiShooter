@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Gun.generated.h"
 
+class UParticleSystem;
 UCLASS()
 class LOFISHOOTER_API AGun : public AActor
 {
@@ -29,7 +30,9 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* Mesh;
 	UPROPERTY(EditAnywhere)
-	class UParticleSystem* MuzzleFlash;
+	UParticleSystem* MuzzleFlash;
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* ImpactEffect;
 	UPROPERTY(EditAnywhere)
 	float MaxRange = 1000;
 };

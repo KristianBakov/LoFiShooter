@@ -37,7 +37,8 @@ void AGun::PullTrigger()
 	bool bShotSuccess = GetWorld()->LineTraceSingleByChannel(HitResult, BulletStartPoint, BulletEnd, ECollisionChannel::ECC_GameTraceChannel1);
 	if (bShotSuccess)
 	{
-		DrawDebugPoint(GetWorld(), HitResult.ImpactPoint, 20, FColor::Red, true);
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, HitResult.Location, HitResult.ImpactNormal.Rotation());
+		//DrawDebugPoint(GetWorld(), HitResult.ImpactPoint, 20, FColor::Red, true);
 	}
 }
 
