@@ -47,12 +47,11 @@ private:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Jump(const FInputActionValue& Value);
+	void Shoot(const FInputActionValue& Value);
 
 public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
-
-	void Shoot();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float RotationRate = 10.0f;

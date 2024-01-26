@@ -87,9 +87,9 @@ void ALoFiPlayerCharacter::Jump(const FInputActionValue& Value)
 {
 }
 
-void ALoFiPlayerCharacter::Shoot()
+void ALoFiPlayerCharacter::Shoot(const FInputActionValue& Value)
 {
-	Gun->PullTrigger();
+	if(Value.Get<bool>()) Gun->PullTrigger();
 }
 
 bool ALoFiPlayerCharacter::IsDead() const
