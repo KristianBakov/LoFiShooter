@@ -28,4 +28,6 @@ public:
 	USceneComponent* Root;
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* Mesh;
+	UPROPERTY(EditAnywhere)
+	class UParticleSystem* MuzzleFlash;
 };
