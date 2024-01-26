@@ -56,6 +56,7 @@ void ALoFiPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputMove, ETriggerEvent::Triggered, this, &ALoFiPlayerCharacter::Move);
 	EnhancedInputComponent->BindAction(InputLook, ETriggerEvent::Triggered, this, &ALoFiPlayerCharacter::Look);
 	EnhancedInputComponent->BindAction(InputJump, ETriggerEvent::Started, this, &ALoFiPlayerCharacter::Jump);
+	EnhancedInputComponent->BindAction(InputShoot, ETriggerEvent::Triggered, this, &ALoFiPlayerCharacter::Shoot);
 }
 
 void ALoFiPlayerCharacter::Move(const FInputActionValue& Value)
@@ -73,5 +74,10 @@ void ALoFiPlayerCharacter::Look(const FInputActionValue& Value)
 
 void ALoFiPlayerCharacter::Jump(const FInputActionValue& Value)
 {
+}
+
+void ALoFiPlayerCharacter::Shoot(const FInputActionValue& Value)
+{
+	if(Value.Get<bool>()) Gun->PullTrigger();
 }
 

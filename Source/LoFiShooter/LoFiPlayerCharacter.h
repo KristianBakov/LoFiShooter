@@ -7,6 +7,7 @@
 #include "LoFiPlayerCharacter.generated.h"
 
 struct FInputActionValue;
+class UInputAction;
 class AGun;
 UCLASS()
 class LOFISHOOTER_API ALoFiPlayerCharacter : public ACharacter
@@ -24,11 +25,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	class UInputMappingContext* InputMappingContext;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	class UInputAction* InputMove;
+	UInputAction* InputMove;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	class UInputAction* InputLook;
+	UInputAction* InputLook;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	class UInputAction* InputJump;
+	UInputAction* InputJump;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* InputShoot;
 
 public:	
 	// Called every frame
@@ -43,6 +46,7 @@ private:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Jump(const FInputActionValue& Value);
+	void Shoot(const FInputActionValue& Value);
 
 public:
 
