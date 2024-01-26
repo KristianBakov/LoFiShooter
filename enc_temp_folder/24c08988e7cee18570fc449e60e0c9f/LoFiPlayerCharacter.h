@@ -7,7 +7,6 @@
 #include "LoFiPlayerCharacter.generated.h"
 
 struct FInputActionValue;
-class AGun;
 UCLASS()
 class LOFISHOOTER_API ALoFiPlayerCharacter : public ACharacter
 {
@@ -48,11 +47,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float RotationRate = 10.0f;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Gun")
-	TSubclassOf<AGun> GunClass;
-
-	UPROPERTY()
-	AGun* Gun;
 
 };

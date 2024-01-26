@@ -7,7 +7,6 @@
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include <EnhancedInputSubsystems.h>
-#include "Gun.h"
 
 // Sets default values
 ALoFiPlayerCharacter::ALoFiPlayerCharacter()
@@ -33,10 +32,7 @@ void ALoFiPlayerCharacter::BeginPlay()
 		}
 	}
 
-	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
-	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
-	Gun->SetOwner(this);
+	
 }
 
 // Called every frame
