@@ -17,15 +17,10 @@ class LOFISHOOTER_API ALoFiPlayerController : public APlayerController
 public:
 	virtual void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<class UUserWidget> LoseScreenClass;
-
 private:
 	UPROPERTY(EditAnywhere)
 	float RestartDelay = 5.f;
-	float CurrentRestartDelay = 5.f;
 
 	FTimerHandle RestartTimerHandle;
-	class UUWidget_LoseScreen* LoseScreen;
 	
 };
