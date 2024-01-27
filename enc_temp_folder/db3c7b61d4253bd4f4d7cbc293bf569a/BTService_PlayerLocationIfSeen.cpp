@@ -25,7 +25,7 @@ void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent& OwnerComp
 	if(!BlackboardComponent) return;
 	if (AIController->LineOfSightTo(PlayerPawn))
 	{
-		BlackboardComponent->SetValueAsObject(GetSelectedBlackboardKey(), PlayerPawn);
+		BlackboardComponent->SetValueAsVector(GetSelectedBlackboardKey(), PlayerPawn->GetActorLocation());
 	}
 	else
 	{
