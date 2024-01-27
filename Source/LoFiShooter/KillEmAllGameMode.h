@@ -16,4 +16,7 @@ class LOFISHOOTER_API AKillEmAllGameMode : public ALoFiShooterGameModeBase
 	
 public:
 virtual void PawnKilled(APawn* PawnKilled) override;
+
+private:
+	void EndGame(bool bIsPlayerWinner);
 };
