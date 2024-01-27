@@ -7,6 +7,7 @@
 #include "Gun.generated.h"
 
 class UParticleSystem;
+class USoundBase;
 UCLASS()
 class LOFISHOOTER_API AGun : public AActor
 {
@@ -32,9 +33,17 @@ public:
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* MuzzleFlash;
 	UPROPERTY(EditAnywhere)
+	USoundBase* MuzzleSound;
+	UPROPERTY(EditAnywhere)
 	UParticleSystem* ImpactEffect;
+	UPROPERTY(EditAnywhere)
+	USoundBase* ImpactSound;
 	UPROPERTY(EditAnywhere)
 	float MaxRange = 1000;
 	UPROPERTY(EditAnywhere)
 	float Damage = 50;
+
+private:
+	bool GunTrace(FHitResult& HitResult);
+	class AController * GetOwnerController() const;
 };

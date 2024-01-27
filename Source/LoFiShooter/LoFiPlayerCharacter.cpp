@@ -111,3 +111,8 @@ bool ALoFiPlayerCharacter::IsDead() const
 	return Health <= 0;
 }
 
+float ALoFiPlayerCharacter::GetHealthPercent() const
+{
+	return Health / MaxHealth;
+}
+

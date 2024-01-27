@@ -14,11 +14,18 @@ class LOFISHOOTER_API ALoFiPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+protected:
+	virtual void BeginPlay() override;
+
 public:
 	virtual void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class UUserWidget> LoseScreenClass;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> WinScreenClass;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> HUDWidgetClass;
 
 private:
 	UPROPERTY(EditAnywhere)
@@ -27,5 +34,6 @@ private:
 
 	FTimerHandle RestartTimerHandle;
 	class UUWidget_LoseScreen* LoseScreen;
+	class UUserWidget* HUDWidget;
 	
 };
