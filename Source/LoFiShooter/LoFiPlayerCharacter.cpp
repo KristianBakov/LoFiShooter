@@ -7,6 +7,8 @@
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include <EnhancedInputSubsystems.h>
+#include "Components/CapsuleComponent.h"
+#include "LoFiShooterGameModeBase.h"
 #include "Gun.h"
 
 // Sets default values
@@ -67,6 +69,18 @@ float ALoFiPlayerCharacter::TakeDamage(float DamageAmount, FDamageEvent const& D
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
 	UE_LOG(LogTemp, Warning, TEXT("Health left: %f"), Health);
+
+	if (IsDead())
+	{
+		ALoFiShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ALoFiShooterGameModeBase>();
+		if (GameMode)
+		{
+			GameMode->PawnKilled(this);
+		}
+
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 	return DamageToApply;
 }
 

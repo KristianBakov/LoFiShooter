@@ -32,11 +32,13 @@ void AGun::PullTrigger()
 	FVector BulletStartPoint;
 	FRotator BulletStartRotation;
 	OwnerController->GetPlayerViewPoint(BulletStartPoint, BulletStartRotation);
-
 	FVector BulletEnd = BulletStartPoint + BulletStartRotation.Vector() * MaxRange;
-	//TODO: ADD line trace
+
 	FHitResult HitResult;
-	bool bShotSuccess = GetWorld()->LineTraceSingleByChannel(HitResult, BulletStartPoint, BulletEnd, ECollisionChannel::ECC_GameTraceChannel1);
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	Params.AddIgnoredActor(GetOwner());
+	bool bShotSuccess = GetWorld()->LineTraceSingleByChannel(HitResult, BulletStartPoint, BulletEnd, ECollisionChannel::ECC_GameTraceChannel1, Params);
 	if (bShotSuccess)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, HitResult.Location, HitResult.ImpactNormal.Rotation());
